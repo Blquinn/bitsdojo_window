@@ -2,7 +2,6 @@ import 'package:bitsdojo_window_platform_interface/bitsdojo_window_platform_inte
 import 'package:bitsdojo_window_platform_interface/method_channel_bitsdojo_window.dart';
 import 'package:bitsdojo_window_windows/bitsdojo_window_windows.dart';
 import 'package:bitsdojo_window_macos/bitsdojo_window_macos.dart';
-import 'package:bitsdojo_window_linux/bitsdojo_window_linux.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'dart:io' show Platform;
@@ -16,8 +15,9 @@ void initPlatformInstance() {
         BitsdojoWindowPlatform.instance = BitsdojoWindowWindows();
       } else if (Platform.isMacOS) {
         BitsdojoWindowPlatform.instance = BitsdojoWindowMacOS();
-      } else if (Platform.isLinux) {
-        BitsdojoWindowPlatform.instance = BitsdojoWindowLinux();
+      } else {
+        BitsdojoWindowPlatform.instance =
+            BitsdojoWindowPlatformNotImplemented();
       }
     }
   } else {
